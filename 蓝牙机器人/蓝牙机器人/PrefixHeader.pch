@@ -1,0 +1,49 @@
+//
+//  PrefixHeader.pch
+//  lingdaozhe
+//
+//  Created by liqiang on 16/4/20.
+//  Copyright © 2016年 bckj. All rights reserved.
+//
+
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#endif /* PrefixHeader_pch */
+
+
+#ifdef __OBJC__
+
+#define DEVICE_TYPE_IPAD  ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "Config.h"
+#import "ConstantLogger.h"
+#import "MainBaseViewController.h"
+#import "ChildBaseViewController.h"
+#import "BaseTableViewController.h"
+#import "BaseNavigationController.h"
+#import "BaseModel.h"
+#import "ModelFieldError.h"
+#import "AFNetworking.h"
+
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UIView+SDAutoLayout.h"
+#import "UIImageView+WebCache.h"
+#import "IQKeyboardManager.h"
+#import "FMDB.h"
+#import "GloabalDefines.h"
+#import "LQHTTPSessionManager.h"
+#import "UtilString.h"
+#import "Enum.h"
+#import "MD5Str.h"
+
+#import "UIAlertView+LQAlertView.h"
+#import "NSDate+LQCategory.h"
+
+#endif
