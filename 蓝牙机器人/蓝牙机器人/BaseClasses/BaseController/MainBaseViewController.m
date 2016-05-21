@@ -42,9 +42,9 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     self.navigationController.navigationBar.barTintColor = NAV_BAR_COLOR;
-    self.navigationController.navigationBar.tintColor = COLOR_Black;
+    self.navigationController.navigationBar.tintColor = COLOR_White;
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:COLOR_Black,NSForegroundColorAttributeName,[UIFont fontWithName:@"HelveticaNeue-Bold" size:18],NSFontAttributeName,nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:COLOR_White,NSForegroundColorAttributeName,[UIFont fontWithName:@"HelveticaNeue-Bold" size:18],NSFontAttributeName,nil]];
 
 }
 

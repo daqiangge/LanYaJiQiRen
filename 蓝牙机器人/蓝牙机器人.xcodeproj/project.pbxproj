@@ -28,6 +28,8 @@
 		D5162F5C1CF05983008ABE07 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5162F5B1CF05983008ABE07 /* LoginVC.m */; };
 		D5162F611CF05AD7008ABE07 /* LCProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5162F5E1CF05AD7008ABE07 /* LCProgressHUD.bundle */; };
 		D5162F621CF05AD7008ABE07 /* LCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D5162F601CF05AD7008ABE07 /* LCProgressHUD.m */; };
+		D550BA2F1CF09D3F00D19EAD /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D550BA2E1CF09D3F00D19EAD /* MainVC.m */; };
+		D550BA321CF0A5AB00D19EAD /* MainVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D550BA311CF0A5AB00D19EAD /* MainVCCell.m */; };
 		D597AA211CEDF85E00965D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D597AA201CEDF85E00965D8C /* main.m */; };
 		D597AA241CEDF85E00965D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D597AA231CEDF85E00965D8C /* AppDelegate.m */; };
 		D597AA2A1CEDF85E00965D8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D597AA281CEDF85E00965D8C /* Main.storyboard */; };
@@ -82,6 +84,10 @@
 		D5162F5E1CF05AD7008ABE07 /* LCProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCProgressHUD.bundle; sourceTree = "<group>"; };
 		D5162F5F1CF05AD7008ABE07 /* LCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCProgressHUD.h; sourceTree = "<group>"; };
 		D5162F601CF05AD7008ABE07 /* LCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCProgressHUD.m; sourceTree = "<group>"; };
+		D550BA2D1CF09D3F00D19EAD /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
+		D550BA2E1CF09D3F00D19EAD /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
+		D550BA301CF0A5AB00D19EAD /* MainVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVCCell.h; sourceTree = "<group>"; };
+		D550BA311CF0A5AB00D19EAD /* MainVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVCCell.m; sourceTree = "<group>"; };
 		D597AA1C1CEDF85E00965D8C /* 蓝牙机器人.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "蓝牙机器人.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D597AA201CEDF85E00965D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D597AA221CEDF85E00965D8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -209,6 +215,8 @@
 		D5162E811CF04C69008ABE07 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				D550BA2D1CF09D3F00D19EAD /* MainVC.h */,
+				D550BA2E1CF09D3F00D19EAD /* MainVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -223,6 +231,8 @@
 		D5162E831CF04C69008ABE07 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				D550BA301CF0A5AB00D19EAD /* MainVCCell.h */,
+				D550BA311CF0A5AB00D19EAD /* MainVCCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -535,6 +545,7 @@
 				D5162ED61CF051E9008ABE07 /* BaseNavigationController.m in Sources */,
 				D5162F531CF05764008ABE07 /* UIButton+LQCategory.m in Sources */,
 				D5162F511CF05764008ABE07 /* UIView+Extension.m in Sources */,
+				D550BA321CF0A5AB00D19EAD /* MainVCCell.m in Sources */,
 				D5162EB21CF04CC2008ABE07 /* UtilString.m in Sources */,
 				D5162F5C1CF05983008ABE07 /* LoginVC.m in Sources */,
 				D5162EDD1CF051E9008ABE07 /* BaseView.m in Sources */,
@@ -542,6 +553,7 @@
 				D5162ED71CF051E9008ABE07 /* BaseTableViewController.m in Sources */,
 				D5162EDA1CF051E9008ABE07 /* BaseModel.m in Sources */,
 				D5162F521CF05764008ABE07 /* UIAlertView+LQAlertView.m in Sources */,
+				D550BA2F1CF09D3F00D19EAD /* MainVC.m in Sources */,
 				D5162EB01CF04CC2008ABE07 /* LQHTTPSessionManager.m in Sources */,
 				D5162F501CF05764008ABE07 /* UIImage+Scale.m in Sources */,
 			);
@@ -659,7 +671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				GCC_PREFIX_HEADER = "/Users/liqiang/Desktop/蓝牙机器人/蓝牙机器人/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/liqiang/Documents/文件/我的项目/蓝牙机器人/蓝牙机器人/蓝牙机器人/PrefixHeader.pch";
 				INFOPLIST_FILE = "蓝牙机器人/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -674,7 +686,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				GCC_PREFIX_HEADER = "/Users/liqiang/Desktop/蓝牙机器人/蓝牙机器人/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/liqiang/Documents/文件/我的项目/蓝牙机器人/蓝牙机器人/蓝牙机器人/PrefixHeader.pch";
 				INFOPLIST_FILE = "蓝牙机器人/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

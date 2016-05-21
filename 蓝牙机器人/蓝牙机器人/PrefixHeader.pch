@@ -29,6 +29,7 @@
 #import "BaseModel.h"
 #import "ModelFieldError.h"
 #import "AFNetworking.h"
+#import "GloabalDefines.h"
 
 #import "MJExtension.h"
 #import "MJRefresh.h"

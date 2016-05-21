@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LoginVC.h"
+#import "MainVC.h"
 
 @interface AppDelegate ()
 
@@ -23,9 +24,15 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    LoginVC *vc = [[LoginVC alloc] init];
+    MainVC *vc = [[MainVC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        LoginVC *loginVC = [[LoginVC alloc] init];
+        UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [vc presentViewController:nav1 animated:NO completion:nil];
+    });
     
     return YES;
 

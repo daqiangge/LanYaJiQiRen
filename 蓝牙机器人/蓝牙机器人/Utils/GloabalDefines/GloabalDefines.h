@@ -75,7 +75,7 @@
 
 #define COLOR_LineViewColor           HEXCOLOR(0xd9d9d9)  //浅灰
 #define COLOR_BackgroundColor         HEXCOLOR(0xeeeeee)  //米白
-#define NAV_BAR_COLOR                 HEXCOLOR(0xffffff)  //HEXCOLOR(0xfe630f) 纯白
+#define NAV_BAR_COLOR                 HEXCOLOR(0x53d2f7)  //HEXCOLOR(0xfe630f) 纯白
 
 #define SizeScale(s) ([[UIScreen mainScreen] bounds].size.height > 568 ?  ([[UIScreen mainScreen] bounds].size.height / 568.0 * (s)) : (s * 1.0))
 
