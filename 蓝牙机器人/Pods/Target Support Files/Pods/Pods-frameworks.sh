@@ -95,6 +95,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SDAutoLayout.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SDWebImage_ProgressView.framework"
+  install_framework "Pods/UITextView_Placeholder.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
@@ -108,4 +109,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SDAutoLayout.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SDWebImage_ProgressView.framework"
+  install_framework "Pods/UITextView_Placeholder.framework"
 fi

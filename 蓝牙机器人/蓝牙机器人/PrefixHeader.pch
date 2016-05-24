@@ -43,8 +43,10 @@
 #import "UtilString.h"
 #import "Enum.h"
 #import "MD5Str.h"
+#import "UITextView+Placeholder.h"
 
 #import "UIAlertView+LQAlertView.h"
 #import "NSDate+LQCategory.h"
+#import "LCActionSheet.h"
 
 #endif

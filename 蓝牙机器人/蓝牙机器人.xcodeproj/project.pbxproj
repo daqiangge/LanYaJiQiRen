@@ -30,12 +30,32 @@
 		D5162F621CF05AD7008ABE07 /* LCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D5162F601CF05AD7008ABE07 /* LCProgressHUD.m */; };
 		D550BA2F1CF09D3F00D19EAD /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D550BA2E1CF09D3F00D19EAD /* MainVC.m */; };
 		D550BA321CF0A5AB00D19EAD /* MainVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D550BA311CF0A5AB00D19EAD /* MainVCCell.m */; };
+		D55116391CF1A93000E42429 /* JXTimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D55116381CF1A93000E42429 /* JXTimeButton.m */; };
+		D551163C1CF1B4CA00E42429 /* ForgetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D551163B1CF1B4CA00E42429 /* ForgetPasswordVC.m */; };
+		D551163F1CF1B8A400E42429 /* PersonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D551163E1CF1B8A400E42429 /* PersonVC.m */; };
+		D55116421CF1BAC900E42429 /* LogInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D55116411CF1BAC900E42429 /* LogInCell.m */; };
+		D55116451CF1BDA900E42429 /* PersonVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D55116441CF1BDA900E42429 /* PersonVCCell.m */; };
+		D55116481CF1C07B00E42429 /* ChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D55116471CF1C07B00E42429 /* ChangePasswordVC.m */; };
+		D551164B1CF1C1A100E42429 /* AboutUsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D551164A1CF1C1A100E42429 /* AboutUsVC.m */; };
+		D551164E1CF1C53C00E42429 /* FanKuiVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D551164D1CF1C53C00E42429 /* FanKuiVC.m */; };
 		D597AA211CEDF85E00965D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D597AA201CEDF85E00965D8C /* main.m */; };
 		D597AA241CEDF85E00965D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D597AA231CEDF85E00965D8C /* AppDelegate.m */; };
 		D597AA2A1CEDF85E00965D8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D597AA281CEDF85E00965D8C /* Main.storyboard */; };
 		D597AA2D1CEDF85E00965D8C /* _____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D597AA2B1CEDF85E00965D8C /* _____.xcdatamodeld */; };
 		D597AA2F1CEDF85E00965D8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D597AA2E1CEDF85E00965D8C /* Assets.xcassets */; };
 		D597AA321CEDF85E00965D8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D597AA301CEDF85E00965D8C /* LaunchScreen.storyboard */; };
+		D5B2CB381CF46E40001B40A2 /* PersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB371CF46E40001B40A2 /* PersonInfoVC.m */; };
+		D5B2CB3B1CF46FFE001B40A2 /* ChangeIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB3A1CF46FFE001B40A2 /* ChangeIconCell.m */; };
+		D5B2CB3E1CF471CD001B40A2 /* PerfonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB3D1CF471CD001B40A2 /* PerfonInfoCell.m */; };
+		D5B2CB411CF472E7001B40A2 /* PerfonInfoCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB401CF472E7001B40A2 /* PerfonInfoCell2.m */; };
+		D5B2CB461CF474E8001B40A2 /* LCActionSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5B2CB431CF474E8001B40A2 /* LCActionSheet.bundle */; };
+		D5B2CB471CF474E8001B40A2 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB451CF474E8001B40A2 /* LCActionSheet.m */; };
+		D5B2CB571CF47566001B40A2 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB4A1CF47566001B40A2 /* CGGeometry+RSKImageCropper.m */; };
+		D5B2CB581CF47566001B40A2 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB4E1CF47566001B40A2 /* RSKImageCropViewController.m */; };
+		D5B2CB591CF47566001B40A2 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB501CF47566001B40A2 /* RSKImageScrollView.m */; };
+		D5B2CB5A1CF47566001B40A2 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB521CF47566001B40A2 /* RSKTouchView.m */; };
+		D5B2CB5B1CF47566001B40A2 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB541CF47566001B40A2 /* UIApplication+RSKImageCropper.m */; };
+		D5B2CB5C1CF47566001B40A2 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB561CF47566001B40A2 /* UIImage+RSKImageCropper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +108,22 @@
 		D550BA2E1CF09D3F00D19EAD /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
 		D550BA301CF0A5AB00D19EAD /* MainVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVCCell.h; sourceTree = "<group>"; };
 		D550BA311CF0A5AB00D19EAD /* MainVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVCCell.m; sourceTree = "<group>"; };
+		D55116371CF1A93000E42429 /* JXTimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXTimeButton.h; sourceTree = "<group>"; };
+		D55116381CF1A93000E42429 /* JXTimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXTimeButton.m; sourceTree = "<group>"; };
+		D551163A1CF1B4CA00E42429 /* ForgetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordVC.h; sourceTree = "<group>"; };
+		D551163B1CF1B4CA00E42429 /* ForgetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordVC.m; sourceTree = "<group>"; };
+		D551163D1CF1B8A400E42429 /* PersonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonVC.h; sourceTree = "<group>"; };
+		D551163E1CF1B8A400E42429 /* PersonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonVC.m; sourceTree = "<group>"; };
+		D55116401CF1BAC900E42429 /* LogInCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInCell.h; sourceTree = "<group>"; };
+		D55116411CF1BAC900E42429 /* LogInCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInCell.m; sourceTree = "<group>"; };
+		D55116431CF1BDA900E42429 /* PersonVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonVCCell.h; sourceTree = "<group>"; };
+		D55116441CF1BDA900E42429 /* PersonVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonVCCell.m; sourceTree = "<group>"; };
+		D55116461CF1C07B00E42429 /* ChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordVC.h; sourceTree = "<group>"; };
+		D55116471CF1C07B00E42429 /* ChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordVC.m; sourceTree = "<group>"; };
+		D55116491CF1C1A100E42429 /* AboutUsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsVC.h; sourceTree = "<group>"; };
+		D551164A1CF1C1A100E42429 /* AboutUsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsVC.m; sourceTree = "<group>"; };
+		D551164C1CF1C53C00E42429 /* FanKuiVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FanKuiVC.h; sourceTree = "<group>"; };
+		D551164D1CF1C53C00E42429 /* FanKuiVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FanKuiVC.m; sourceTree = "<group>"; };
 		D597AA1C1CEDF85E00965D8C /* 蓝牙机器人.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "蓝牙机器人.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D597AA201CEDF85E00965D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D597AA221CEDF85E00965D8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,6 +133,31 @@
 		D597AA2E1CEDF85E00965D8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D597AA311CEDF85E00965D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D597AA331CEDF85E00965D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5B2CB361CF46E40001B40A2 /* PersonInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoVC.h; sourceTree = "<group>"; };
+		D5B2CB371CF46E40001B40A2 /* PersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoVC.m; sourceTree = "<group>"; };
+		D5B2CB391CF46FFE001B40A2 /* ChangeIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeIconCell.h; sourceTree = "<group>"; };
+		D5B2CB3A1CF46FFE001B40A2 /* ChangeIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeIconCell.m; sourceTree = "<group>"; };
+		D5B2CB3C1CF471CD001B40A2 /* PerfonInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfonInfoCell.h; sourceTree = "<group>"; };
+		D5B2CB3D1CF471CD001B40A2 /* PerfonInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfonInfoCell.m; sourceTree = "<group>"; };
+		D5B2CB3F1CF472E7001B40A2 /* PerfonInfoCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfonInfoCell2.h; sourceTree = "<group>"; };
+		D5B2CB401CF472E7001B40A2 /* PerfonInfoCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfonInfoCell2.m; sourceTree = "<group>"; };
+		D5B2CB431CF474E8001B40A2 /* LCActionSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCActionSheet.bundle; sourceTree = "<group>"; };
+		D5B2CB441CF474E8001B40A2 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
+		D5B2CB451CF474E8001B40A2 /* LCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCActionSheet.m; sourceTree = "<group>"; };
+		D5B2CB491CF47566001B40A2 /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
+		D5B2CB4A1CF47566001B40A2 /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
+		D5B2CB4B1CF47566001B40A2 /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
+		D5B2CB4C1CF47566001B40A2 /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
+		D5B2CB4D1CF47566001B40A2 /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
+		D5B2CB4E1CF47566001B40A2 /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
+		D5B2CB4F1CF47566001B40A2 /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
+		D5B2CB501CF47566001B40A2 /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
+		D5B2CB511CF47566001B40A2 /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
+		D5B2CB521CF47566001B40A2 /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
+		D5B2CB531CF47566001B40A2 /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
+		D5B2CB541CF47566001B40A2 /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
+		D5B2CB551CF47566001B40A2 /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
+		D5B2CB561CF47566001B40A2 /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
 		F9E4718A0D905EA22137546C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +194,9 @@
 		D5162E771CF04C1A008ABE07 /* ThirdClass */ = {
 			isa = PBXGroup;
 			children = (
+				D5B2CB481CF47566001B40A2 /* RSKImageController */,
+				D5B2CB421CF474E8001B40A2 /* LCActionSheet */,
+				D55116361CF1A92700E42429 /* TimeBtn */,
 				D5162F5D1CF05AD7008ABE07 /* LCProgressHUD */,
 			);
 			path = ThirdClass;
@@ -153,6 +217,8 @@
 			children = (
 				D5162F5A1CF05983008ABE07 /* LoginVC.h */,
 				D5162F5B1CF05983008ABE07 /* LoginVC.m */,
+				D551163A1CF1B4CA00E42429 /* ForgetPasswordVC.h */,
+				D551163B1CF1B4CA00E42429 /* ForgetPasswordVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -184,6 +250,16 @@
 		D5162E7D1CF04C69008ABE07 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				D551163D1CF1B8A400E42429 /* PersonVC.h */,
+				D551163E1CF1B8A400E42429 /* PersonVC.m */,
+				D55116461CF1C07B00E42429 /* ChangePasswordVC.h */,
+				D55116471CF1C07B00E42429 /* ChangePasswordVC.m */,
+				D55116491CF1C1A100E42429 /* AboutUsVC.h */,
+				D551164A1CF1C1A100E42429 /* AboutUsVC.m */,
+				D551164C1CF1C53C00E42429 /* FanKuiVC.h */,
+				D551164D1CF1C53C00E42429 /* FanKuiVC.m */,
+				D5B2CB361CF46E40001B40A2 /* PersonInfoVC.h */,
+				D5B2CB371CF46E40001B40A2 /* PersonInfoVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -198,6 +274,16 @@
 		D5162E7F1CF04C69008ABE07 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				D55116401CF1BAC900E42429 /* LogInCell.h */,
+				D55116411CF1BAC900E42429 /* LogInCell.m */,
+				D55116431CF1BDA900E42429 /* PersonVCCell.h */,
+				D55116441CF1BDA900E42429 /* PersonVCCell.m */,
+				D5B2CB391CF46FFE001B40A2 /* ChangeIconCell.h */,
+				D5B2CB3A1CF46FFE001B40A2 /* ChangeIconCell.m */,
+				D5B2CB3C1CF471CD001B40A2 /* PerfonInfoCell.h */,
+				D5B2CB3D1CF471CD001B40A2 /* PerfonInfoCell.m */,
+				D5B2CB3F1CF472E7001B40A2 /* PerfonInfoCell2.h */,
+				D5B2CB401CF472E7001B40A2 /* PerfonInfoCell2.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -356,6 +442,15 @@
 			path = LCProgressHUD;
 			sourceTree = "<group>";
 		};
+		D55116361CF1A92700E42429 /* TimeBtn */ = {
+			isa = PBXGroup;
+			children = (
+				D55116371CF1A93000E42429 /* JXTimeButton.h */,
+				D55116381CF1A93000E42429 /* JXTimeButton.m */,
+			);
+			path = TimeBtn;
+			sourceTree = "<group>";
+		};
 		D597AA131CEDF85E00965D8C = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +494,37 @@
 				D597AA201CEDF85E00965D8C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5B2CB421CF474E8001B40A2 /* LCActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				D5B2CB431CF474E8001B40A2 /* LCActionSheet.bundle */,
+				D5B2CB441CF474E8001B40A2 /* LCActionSheet.h */,
+				D5B2CB451CF474E8001B40A2 /* LCActionSheet.m */,
+			);
+			path = LCActionSheet;
+			sourceTree = "<group>";
+		};
+		D5B2CB481CF47566001B40A2 /* RSKImageController */ = {
+			isa = PBXGroup;
+			children = (
+				D5B2CB491CF47566001B40A2 /* CGGeometry+RSKImageCropper.h */,
+				D5B2CB4A1CF47566001B40A2 /* CGGeometry+RSKImageCropper.m */,
+				D5B2CB4B1CF47566001B40A2 /* RSKImageCropper.h */,
+				D5B2CB4C1CF47566001B40A2 /* RSKImageCropViewController+Protected.h */,
+				D5B2CB4D1CF47566001B40A2 /* RSKImageCropViewController.h */,
+				D5B2CB4E1CF47566001B40A2 /* RSKImageCropViewController.m */,
+				D5B2CB4F1CF47566001B40A2 /* RSKImageScrollView.h */,
+				D5B2CB501CF47566001B40A2 /* RSKImageScrollView.m */,
+				D5B2CB511CF47566001B40A2 /* RSKTouchView.h */,
+				D5B2CB521CF47566001B40A2 /* RSKTouchView.m */,
+				D5B2CB531CF47566001B40A2 /* UIApplication+RSKImageCropper.h */,
+				D5B2CB541CF47566001B40A2 /* UIApplication+RSKImageCropper.m */,
+				D5B2CB551CF47566001B40A2 /* UIImage+RSKImageCropper.h */,
+				D5B2CB561CF47566001B40A2 /* UIImage+RSKImageCropper.m */,
+			);
+			path = RSKImageController;
 			sourceTree = "<group>";
 		};
 		F441D56564E48127FB0E4D2A /* Pods */ = {
@@ -474,6 +600,7 @@
 				D5162F611CF05AD7008ABE07 /* LCProgressHUD.bundle in Resources */,
 				D597AA2F1CEDF85E00965D8C /* Assets.xcassets in Resources */,
 				D597AA2A1CEDF85E00965D8C /* Main.storyboard in Resources */,
+				D5B2CB461CF474E8001B40A2 /* LCActionSheet.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,28 +661,47 @@
 			files = (
 				D5162EDB1CF051E9008ABE07 /* ModelFieldError.m in Sources */,
 				D5162F621CF05AD7008ABE07 /* LCProgressHUD.m in Sources */,
+				D55116451CF1BDA900E42429 /* PersonVCCell.m in Sources */,
+				D55116481CF1C07B00E42429 /* ChangePasswordVC.m in Sources */,
 				D597AA2D1CEDF85E00965D8C /* _____.xcdatamodeld in Sources */,
 				D597AA241CEDF85E00965D8C /* AppDelegate.m in Sources */,
 				D5162EAD1CF04CC2008ABE07 /* Enum.m in Sources */,
 				D5162ED81CF051E9008ABE07 /* ChildBaseViewController.m in Sources */,
+				D55116391CF1A93000E42429 /* JXTimeButton.m in Sources */,
+				D551163F1CF1B8A400E42429 /* PersonVC.m in Sources */,
+				D5B2CB571CF47566001B40A2 /* CGGeometry+RSKImageCropper.m in Sources */,
+				D5B2CB381CF46E40001B40A2 /* PersonInfoVC.m in Sources */,
 				D5162F541CF05764008ABE07 /* NSDate+LQCategory.m in Sources */,
 				D5162EDC1CF051E9008ABE07 /* BaseTableViewCell.m in Sources */,
 				D5162ED91CF051E9008ABE07 /* MainBaseViewController.m in Sources */,
+				D5B2CB471CF474E8001B40A2 /* LCActionSheet.m in Sources */,
 				D5162EB11CF04CC2008ABE07 /* MD5Str.m in Sources */,
+				D5B2CB5C1CF47566001B40A2 /* UIImage+RSKImageCropper.m in Sources */,
 				D5162ED61CF051E9008ABE07 /* BaseNavigationController.m in Sources */,
 				D5162F531CF05764008ABE07 /* UIButton+LQCategory.m in Sources */,
 				D5162F511CF05764008ABE07 /* UIView+Extension.m in Sources */,
+				D5B2CB591CF47566001B40A2 /* RSKImageScrollView.m in Sources */,
 				D550BA321CF0A5AB00D19EAD /* MainVCCell.m in Sources */,
 				D5162EB21CF04CC2008ABE07 /* UtilString.m in Sources */,
 				D5162F5C1CF05983008ABE07 /* LoginVC.m in Sources */,
 				D5162EDD1CF051E9008ABE07 /* BaseView.m in Sources */,
+				D551163C1CF1B4CA00E42429 /* ForgetPasswordVC.m in Sources */,
+				D5B2CB5A1CF47566001B40A2 /* RSKTouchView.m in Sources */,
+				D551164B1CF1C1A100E42429 /* AboutUsVC.m in Sources */,
+				D5B2CB411CF472E7001B40A2 /* PerfonInfoCell2.m in Sources */,
 				D597AA211CEDF85E00965D8C /* main.m in Sources */,
 				D5162ED71CF051E9008ABE07 /* BaseTableViewController.m in Sources */,
+				D5B2CB3B1CF46FFE001B40A2 /* ChangeIconCell.m in Sources */,
 				D5162EDA1CF051E9008ABE07 /* BaseModel.m in Sources */,
 				D5162F521CF05764008ABE07 /* UIAlertView+LQAlertView.m in Sources */,
 				D550BA2F1CF09D3F00D19EAD /* MainVC.m in Sources */,
+				D5B2CB581CF47566001B40A2 /* RSKImageCropViewController.m in Sources */,
+				D551164E1CF1C53C00E42429 /* FanKuiVC.m in Sources */,
+				D5B2CB3E1CF471CD001B40A2 /* PerfonInfoCell.m in Sources */,
 				D5162EB01CF04CC2008ABE07 /* LQHTTPSessionManager.m in Sources */,
+				D5B2CB5B1CF47566001B40A2 /* UIApplication+RSKImageCropper.m in Sources */,
 				D5162F501CF05764008ABE07 /* UIImage+Scale.m in Sources */,
+				D55116421CF1BAC900E42429 /* LogInCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

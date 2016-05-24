@@ -35,6 +35,7 @@ PODS:
   - SDWebImage-ProgressView (0.4.0):
     - SDWebImage (~> 3.7.0)
   - SDWebImage/Core (3.7.6)
+  - UITextView+Placeholder (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - SDAutoLayout
   - SDWebImage (~> 3.7.3)
   - SDWebImage-ProgressView
+  - UITextView+Placeholder
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -61,5 +63,6 @@ SPEC CHECKSUMS:
   SDAutoLayout: ae98d238e4721c1566abec57bcb2fa1fbe62a0df
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SDWebImage-ProgressView: cdc29091ec0d53fd6dab3df65039a4f308e0a5ae
+  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
 COCOAPODS: 0.39.0

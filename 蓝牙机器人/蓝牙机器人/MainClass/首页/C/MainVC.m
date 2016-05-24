@@ -8,6 +8,7 @@
 
 #import "MainVC.h"
 #import "MainVCCell.h"
+#import "PersonVC.h"
 
 @interface MainVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -41,8 +42,16 @@
     tableView.dataSource = self;
     [self.view addSubview:tableView];
     self.tableViwe = tableView;
+    
+    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"person"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPersonVC)];
+    self.navigationItem.rightBarButtonItem = rightBarBtn;
 }
 
+- (void)gotoPersonVC
+{
+    PersonVC *vc = [[PersonVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark -
 #pragma mark ================= <UITableViewDelegate,UITableViewDataSource> =================
