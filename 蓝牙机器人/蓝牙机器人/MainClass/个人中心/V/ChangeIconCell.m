@@ -43,7 +43,7 @@
 - (void)drawView
 {
     UIImageView *iconImageView = [[UIImageView alloc] init];
-    iconImageView.backgroundColor = [UIColor redColor];
+    iconImageView.image = [UIImage imageNamed:@"PC_ic-userImg002"];
     [self.contentView addSubview:iconImageView];
     self.iconImageView = iconImageView;
     
@@ -82,7 +82,7 @@
 {
     _iconImage = iconImage;
     
-    self.iconImageView.image = iconImage;
+    self.iconImageView.image = [UIImage imageNamed:@"PC_ic-userImg002"];
 }
 
 @end

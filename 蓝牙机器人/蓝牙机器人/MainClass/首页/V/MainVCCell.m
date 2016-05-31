@@ -58,11 +58,11 @@
     lianJieStateLabel.text = @"连接状态:";
     [self.contentView addSubview:lianJieStateLabel];
     
-    UILabel *useStateLabel = [[UILabel alloc] init];
-    useStateLabel.font = [UIFont systemFontOfSize:15];
-    useStateLabel.textColor = [UIColor lightGrayColor];
-    useStateLabel.text = @"设备状态:使用中";
-    [self.contentView addSubview:useStateLabel];
+//    UILabel *useStateLabel = [[UILabel alloc] init];
+//    useStateLabel.font = [UIFont systemFontOfSize:15];
+//    useStateLabel.textColor = [UIColor lightGrayColor];
+//    useStateLabel.text = @"设备状态:使用中";
+//    [self.contentView addSubview:useStateLabel];
     
     UISwitch *lianjieSwitch = [[UISwitch alloc] init];
     [self.contentView addSubview:lianjieSwitch];
@@ -87,21 +87,21 @@
     
     lianjieSwitch.sd_layout
     .rightSpaceToView(self.contentView,20)
-    .centerYEqualToView(nameLabe1)
+    .centerYEqualToView(self.contentView)
     .widthIs(150)
     .heightRatioToView(nameLabe1,1);
     
     lianJieStateLabel.sd_layout
     .rightSpaceToView(lianjieSwitch,5)
-    .centerYEqualToView(nameLabe1)
+    .centerYEqualToView(self.contentView)
     .widthIs(70)
     .heightRatioToView(nameLabe1,1);
     
-    useStateLabel.sd_layout
-    .leftEqualToView(lianJieStateLabel)
-    .centerYEqualToView(shiYongCiShuLabel)
-    .rightEqualToView(lianjieSwitch)
-    .heightRatioToView(lianJieStateLabel,1);
+//    useStateLabel.sd_layout
+//    .leftEqualToView(lianJieStateLabel)
+//    .centerYEqualToView(shiYongCiShuLabel)
+//    .rightEqualToView(lianjieSwitch)
+//    .heightRatioToView(lianJieStateLabel,1);
     
     lineView.sd_layout
     .leftSpaceToView(self.contentView,0)

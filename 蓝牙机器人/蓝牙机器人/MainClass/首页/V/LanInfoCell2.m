@@ -1,14 +1,14 @@
 //
-//  PerfonInfoCell2.m
+//  LanInfoCell2.m
 //  蓝牙机器人
 //
-//  Created by liqiang on 16/5/24.
+//  Created by liqiang on 16/5/26.
 //  Copyright © 2016年 LiQiang. All rights reserved.
 //
 
-#import "PerfonInfoCell2.h"
+#import "LanInfoCell2.h"
 
-@implementation PerfonInfoCell2
+@implementation LanInfoCell2
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -21,13 +21,13 @@
     return self;
 }
 
-+ (PerfonInfoCell2 *)cellWithTableView:(UITableView *)tableView
++ (LanInfoCell2 *)cellWithTableView:(UITableView *)tableView
 {
-    static NSString *idenifier = @"PerfonInfoCell2";
-    PerfonInfoCell2 *cell = [tableView dequeueReusableCellWithIdentifier:idenifier];
+    static NSString *idenifier = @"LanInfoCell2";
+    LanInfoCell2 *cell = [tableView dequeueReusableCellWithIdentifier:idenifier];
     if (cell == nil)
     {
-        cell = [[PerfonInfoCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idenifier];
+        cell = [[LanInfoCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idenifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -39,14 +39,13 @@
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = [UIColor blackColor];
-    label.text = @"联系电话";
+    label.text = @"授权次数";
     [self.contentView addSubview:label];
     
     UITextField *textField = [[UITextField alloc] init];
     textField.font = [UIFont systemFontOfSize:15];
-    textField.placeholder = @"联系电话";
-    textField.text = @"13898923456";
-    textField.enabled = NO;
+    textField.textColor = [UIColor grayColor];
+    textField.placeholder = @"授权次数";
     [self.contentView addSubview:textField];
     
     UIView *lineView = [[UIView alloc] init];

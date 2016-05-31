@@ -9,12 +9,14 @@
 #import "MainVC.h"
 #import "MainVCCell.h"
 #import "PersonVC.h"
+#import "LanInfoVC.h"
 
 @interface MainVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableViwe;
 @property (nonatomic, weak) UILabel *yiYuanNameLabel;
 @property (nonatomic, weak) UILabel *guanLiYuanNameLabel;
+@property (nonatomic, weak) UILabel *shouquanNumLabel;
 
 @end
 
@@ -79,12 +81,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 125;
+    return 162.5;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 125)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 162.5)];
     headerView.backgroundColor = [UIColor colorWithRed:0.906 green:0.910 blue:0.914 alpha:1.00];
     
     UIView *yiyuanView = [[UIView alloc] init];
@@ -103,6 +105,12 @@
     label2.text = @"管理员";
     [yiyuanView addSubview:label2];
     
+    UILabel *label3 = [[UILabel alloc] init];
+    label3.font = [UIFont systemFontOfSize:15];
+    label3.textColor = [UIColor blackColor];
+    label3.text = @"可授权次数";
+    [yiyuanView addSubview:label3];
+    
     UILabel *yiYuanNameLabel = [[UILabel alloc] init];
     yiYuanNameLabel.font = [UIFont systemFontOfSize:15];
     yiYuanNameLabel.textColor = [UIColor grayColor];
@@ -116,6 +124,13 @@
     guanLiYuanNameLabel.text = @"张三";
     [yiyuanView addSubview:guanLiYuanNameLabel];
     self.guanLiYuanNameLabel = guanLiYuanNameLabel;
+    
+    UILabel *shouquanNumLabel = [[UILabel alloc] init];
+    shouquanNumLabel.font = [UIFont systemFontOfSize:15];
+    shouquanNumLabel.textColor = [UIColor grayColor];
+    shouquanNumLabel.text = @"1000次";
+    [yiyuanView addSubview:shouquanNumLabel];
+    self.shouquanNumLabel = shouquanNumLabel;
     
     UIView *lieBiaoTitleView = [[UIView alloc] init];
     lieBiaoTitleView.backgroundColor = [UIColor colorWithRed:0.227 green:0.714 blue:0.855 alpha:1.00];
@@ -133,7 +148,7 @@
     .leftSpaceToView(headerView,0)
     .rightSpaceToView(headerView,0)
     .topSpaceToView(headerView,0)
-    .heightIs(75);
+    .heightIs(112.5);
     
     label1.sd_layout
     .leftSpaceToView(yiyuanView,15)
@@ -144,6 +159,12 @@
     label2.sd_layout
     .leftSpaceToView(yiyuanView,15)
     .topSpaceToView(label1,0)
+    .widthIs(80)
+    .heightIs(37.5);
+    
+    label3.sd_layout
+    .leftSpaceToView(yiyuanView,15)
+    .topSpaceToView(label2,0)
     .widthIs(80)
     .heightIs(37.5);
     
@@ -158,6 +179,12 @@
     .topEqualToView(label2)
     .rightSpaceToView(yiyuanView,15)
     .heightRatioToView(label2,1);
+    
+    shouquanNumLabel.sd_layout
+    .leftSpaceToView(label3,15)
+    .topEqualToView(label3)
+    .rightSpaceToView(yiyuanView,15)
+    .heightRatioToView(label3,1);
     
     lieBiaoTitleView.sd_layout
     .leftSpaceToView(headerView,0)
@@ -177,6 +204,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LanInfoVC *vc = [[LanInfoVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

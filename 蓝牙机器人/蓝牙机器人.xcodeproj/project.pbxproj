@@ -44,6 +44,10 @@
 		D597AA2D1CEDF85E00965D8C /* _____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D597AA2B1CEDF85E00965D8C /* _____.xcdatamodeld */; };
 		D597AA2F1CEDF85E00965D8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D597AA2E1CEDF85E00965D8C /* Assets.xcassets */; };
 		D597AA321CEDF85E00965D8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D597AA301CEDF85E00965D8C /* LaunchScreen.storyboard */; };
+		D59B396E1CF6D6C5008DB8A6 /* LanInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D59B396D1CF6D6C5008DB8A6 /* LanInfoVC.m */; };
+		D59B39711CF6D7A6008DB8A6 /* LanInfoCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = D59B39701CF6D7A6008DB8A6 /* LanInfoCell1.m */; };
+		D59B39741CF6D7B4008DB8A6 /* LanInfoCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = D59B39731CF6D7B4008DB8A6 /* LanInfoCell2.m */; };
+		D59B39771CF6D7C0008DB8A6 /* LanInfoCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = D59B39761CF6D7C0008DB8A6 /* LanInfoCell3.m */; };
 		D5B2CB381CF46E40001B40A2 /* PersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB371CF46E40001B40A2 /* PersonInfoVC.m */; };
 		D5B2CB3B1CF46FFE001B40A2 /* ChangeIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB3A1CF46FFE001B40A2 /* ChangeIconCell.m */; };
 		D5B2CB3E1CF471CD001B40A2 /* PerfonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B2CB3D1CF471CD001B40A2 /* PerfonInfoCell.m */; };
@@ -133,6 +137,14 @@
 		D597AA2E1CEDF85E00965D8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D597AA311CEDF85E00965D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D597AA331CEDF85E00965D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D59B396C1CF6D6C5008DB8A6 /* LanInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanInfoVC.h; sourceTree = "<group>"; };
+		D59B396D1CF6D6C5008DB8A6 /* LanInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanInfoVC.m; sourceTree = "<group>"; };
+		D59B396F1CF6D7A6008DB8A6 /* LanInfoCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanInfoCell1.h; sourceTree = "<group>"; };
+		D59B39701CF6D7A6008DB8A6 /* LanInfoCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanInfoCell1.m; sourceTree = "<group>"; };
+		D59B39721CF6D7B4008DB8A6 /* LanInfoCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanInfoCell2.h; sourceTree = "<group>"; };
+		D59B39731CF6D7B4008DB8A6 /* LanInfoCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanInfoCell2.m; sourceTree = "<group>"; };
+		D59B39751CF6D7C0008DB8A6 /* LanInfoCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanInfoCell3.h; sourceTree = "<group>"; };
+		D59B39761CF6D7C0008DB8A6 /* LanInfoCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanInfoCell3.m; sourceTree = "<group>"; };
 		D5B2CB361CF46E40001B40A2 /* PersonInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoVC.h; sourceTree = "<group>"; };
 		D5B2CB371CF46E40001B40A2 /* PersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoVC.m; sourceTree = "<group>"; };
 		D5B2CB391CF46FFE001B40A2 /* ChangeIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeIconCell.h; sourceTree = "<group>"; };
@@ -303,6 +315,8 @@
 			children = (
 				D550BA2D1CF09D3F00D19EAD /* MainVC.h */,
 				D550BA2E1CF09D3F00D19EAD /* MainVC.m */,
+				D59B396C1CF6D6C5008DB8A6 /* LanInfoVC.h */,
+				D59B396D1CF6D6C5008DB8A6 /* LanInfoVC.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -319,6 +333,12 @@
 			children = (
 				D550BA301CF0A5AB00D19EAD /* MainVCCell.h */,
 				D550BA311CF0A5AB00D19EAD /* MainVCCell.m */,
+				D59B396F1CF6D7A6008DB8A6 /* LanInfoCell1.h */,
+				D59B39701CF6D7A6008DB8A6 /* LanInfoCell1.m */,
+				D59B39721CF6D7B4008DB8A6 /* LanInfoCell2.h */,
+				D59B39731CF6D7B4008DB8A6 /* LanInfoCell2.m */,
+				D59B39751CF6D7C0008DB8A6 /* LanInfoCell3.h */,
+				D59B39761CF6D7C0008DB8A6 /* LanInfoCell3.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -570,6 +590,7 @@
 				TargetAttributes = {
 					D597AA1B1CEDF85E00965D8C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Q7ESURK89L;
 					};
 				};
 			};
@@ -660,6 +681,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5162EDB1CF051E9008ABE07 /* ModelFieldError.m in Sources */,
+				D59B39711CF6D7A6008DB8A6 /* LanInfoCell1.m in Sources */,
 				D5162F621CF05AD7008ABE07 /* LCProgressHUD.m in Sources */,
 				D55116451CF1BDA900E42429 /* PersonVCCell.m in Sources */,
 				D55116481CF1C07B00E42429 /* ChangePasswordVC.m in Sources */,
@@ -670,6 +692,7 @@
 				D55116391CF1A93000E42429 /* JXTimeButton.m in Sources */,
 				D551163F1CF1B8A400E42429 /* PersonVC.m in Sources */,
 				D5B2CB571CF47566001B40A2 /* CGGeometry+RSKImageCropper.m in Sources */,
+				D59B39771CF6D7C0008DB8A6 /* LanInfoCell3.m in Sources */,
 				D5B2CB381CF46E40001B40A2 /* PersonInfoVC.m in Sources */,
 				D5162F541CF05764008ABE07 /* NSDate+LQCategory.m in Sources */,
 				D5162EDC1CF051E9008ABE07 /* BaseTableViewCell.m in Sources */,
@@ -678,6 +701,7 @@
 				D5162EB11CF04CC2008ABE07 /* MD5Str.m in Sources */,
 				D5B2CB5C1CF47566001B40A2 /* UIImage+RSKImageCropper.m in Sources */,
 				D5162ED61CF051E9008ABE07 /* BaseNavigationController.m in Sources */,
+				D59B39741CF6D7B4008DB8A6 /* LanInfoCell2.m in Sources */,
 				D5162F531CF05764008ABE07 /* UIButton+LQCategory.m in Sources */,
 				D5162F511CF05764008ABE07 /* UIView+Extension.m in Sources */,
 				D5B2CB591CF47566001B40A2 /* RSKImageScrollView.m in Sources */,
@@ -701,6 +725,7 @@
 				D5162EB01CF04CC2008ABE07 /* LQHTTPSessionManager.m in Sources */,
 				D5B2CB5B1CF47566001B40A2 /* UIApplication+RSKImageCropper.m in Sources */,
 				D5162F501CF05764008ABE07 /* UIImage+Scale.m in Sources */,
+				D59B396E1CF6D6C5008DB8A6 /* LanInfoVC.m in Sources */,
 				D55116421CF1BAC900E42429 /* LogInCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -745,7 +770,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: WuXi Baichun Tec. Co. LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: WuXi Baichun Tec. Co. LTD";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -767,6 +793,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "544e0b60-18c0-44f9-93fd-de53ca93966a";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -790,7 +817,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: WuXi Baichun Tec. Co. LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: WuXi Baichun Tec. Co. LTD";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -805,6 +833,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "544e0b60-18c0-44f9-93fd-de53ca93966a";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -817,12 +846,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: WuXi Baichun Tec. Co. LTD";
 				GCC_PREFIX_HEADER = "/Users/liqiang/Documents/文件/我的项目/蓝牙机器人/蓝牙机器人/蓝牙机器人/PrefixHeader.pch";
 				INFOPLIST_FILE = "蓝牙机器人/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bc.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = com.baichun.enterP.WaterMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "544e0b60-18c0-44f9-93fd-de53ca93966a";
 			};
 			name = Debug;
 		};
@@ -832,12 +863,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: WuXi Baichun Tec. Co. LTD";
 				GCC_PREFIX_HEADER = "/Users/liqiang/Documents/文件/我的项目/蓝牙机器人/蓝牙机器人/蓝牙机器人/PrefixHeader.pch";
 				INFOPLIST_FILE = "蓝牙机器人/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bc.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = com.baichun.enterP.WaterMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "544e0b60-18c0-44f9-93fd-de53ca93966a";
 			};
 			name = Release;
 		};

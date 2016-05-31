@@ -50,8 +50,22 @@
     .topSpaceToView(self.view,0)
     .rightSpaceToView(self.view,0)
     .bottomSpaceToView(self.view,0);
+    
+    UIButton *logOutBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 250, ScreenWidth-30, 40)];
+    [logOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [logOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    logOutBtn.backgroundColor = [UIColor redColor];
+    logOutBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [logOutBtn addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView addSubview:logOutBtn];
 }
 
+- (void)logOut
+{
+    LoginVC *loginVC = [[LoginVC alloc] init];
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self presentViewController:nav1 animated:NO completion:nil];
+}
 
 #pragma mark -
 #pragma mark ================= <UITableViewDelegate,UITableViewDataSource> =================
@@ -62,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,14 +87,31 @@
         return cell;
     }
     
-    NSArray *array = @[@"个人资料",@"修改密码",@"关于我们",@"客服中心",@"意见反馈"];
+    NSArray *array = @[@"个人资料",@"关于我们",@"客服中心",@"意见反馈"];
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = array[indexPath.row - 1];
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    cell.imageView.image = [UIImage imageNamed:@"person"];
+    
+    switch (indexPath.row) {
+        case 1:
+            cell.imageView.image = [UIImage imageNamed:@"PC_ic-userInfo"];
+            break;
+        case 2:
+            cell.imageView.image = [UIImage imageNamed:@"PC_ic-aboutUs"];
+            break;
+        case 3:
+            cell.imageView.image = [UIImage imageNamed:@"PC_ic-handset"];
+            break;
+        case 4:
+            cell.imageView.image = [UIImage imageNamed:@"PC_ic-suggestion"];
+            break;
+            
+        default:
+            break;
+    }
     
     if (indexPath.row == 4)
     {
@@ -139,12 +170,9 @@
         PersonInfoVC *vc = [[PersonInfoVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 2){
-        ChangePasswordVC *vc = [[ChangePasswordVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 3){
         AboutUsVC *vc = [[AboutUsVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row == 5){
+    }else if (indexPath.row == 4){
         FanKuiVC *vc = [[FanKuiVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
