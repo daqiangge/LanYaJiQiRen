@@ -14,4 +14,7 @@ typedef void (^ActionBlock)();
 @interface JXTimeButton : UILabel
 
 - (instancetype)initWithFrame:(CGRect)frame AndBeforeTitle:(NSString*)beforeStr AndWorkingMarkStr:(NSString*)markStr AndTimeSum:(int)time AndTimeButtonStar:(void(^)(void))starBlock AndTimeButtonStop:(void(^)(void))stopBlock;
+
+- (void)stop;
+
 @end

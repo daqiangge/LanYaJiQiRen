@@ -10,7 +10,7 @@
 #import "LCActionSheet.h"
 
 // 按钮高度
-#define BUTTON_H 35.0f
+#define BUTTON_H 45.0f
 // 屏幕尺寸
 #define SCREEN_SIZE [UIScreen mainScreen].bounds.size
 // 颜色

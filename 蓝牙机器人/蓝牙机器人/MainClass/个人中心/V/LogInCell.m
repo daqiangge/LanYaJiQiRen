@@ -8,6 +8,13 @@
 
 #import "LogInCell.h"
 
+@interface LogInCell ()
+
+@property (nonatomic, weak) UIImageView *iconImageView;
+@property (nonatomic, weak) UILabel *label;
+
+@end
+
 @implementation LogInCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -41,14 +48,16 @@
     [self.contentView addSubview:backgroundImageView];
     
     UIImageView *iconImageView = [[UIImageView alloc] init];
-    [iconImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"PC_ic-userImg002"]];
+    [iconImageView sd_setImageWithURL:[NSURL URLWithString:URLSTR([ModelDeviceAndNurse sharedManager].nurse.photo)] placeholderImage:[UIImage imageNamed:@"PC_ic-userImg002"]];
     [self.contentView addSubview:iconImageView];
+    self.iconImageView = iconImageView;
     
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = [UIColor whiteColor];
-    label.text = @"张三";
+    label.text = [ModelDeviceAndNurse sharedManager].nurse.name;
     [self.contentView addSubview:label];
+    self.label = label;
     
 //    UIButton *logInBtn = [[UIButton alloc] init];
 //    [logInBtn setTitle:@"立即登录" forState:UIControlStateNormal];
@@ -76,6 +85,13 @@
     .centerYEqualToView(iconImageView)
     .widthIs(80)
     .heightIs(25);
+}
+
+- (void)reloadCell
+{
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:URLSTR2([ModelDeviceAndNurse sharedManager].nurse.photo)] placeholderImage:[UIImage imageNamed:@"PC_ic-userImg002"]];
+    self.label.text = [ModelDeviceAndNurse sharedManager].nurse.name;
+
 }
 
 @end

@@ -10,6 +10,8 @@
 
 @interface LanInfoCell2 : UITableViewCell
 
+@property (nonatomic, weak) UITextField *textField;
+
 + (LanInfoCell2 *)cellWithTableView:(UITableView *)tableView;
 
 @end

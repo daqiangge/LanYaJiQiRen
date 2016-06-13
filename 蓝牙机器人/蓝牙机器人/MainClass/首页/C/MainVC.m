@@ -11,17 +11,50 @@
 #import "PersonVC.h"
 #import "LanInfoVC.h"
 
-@interface MainVC ()<UITableViewDelegate,UITableViewDataSource>
+#import "ModelNurse.h"
+#import "ModelDevice.h"
+#import "ModelDeviceListChild.h"
+#import "ModelDeviceAndNurse.h"
 
-@property (nonatomic, weak) UITableView *tableViwe;
+
+
+
+@interface MainVC ()<UITableViewDelegate,UITableViewDataSource,BTSmartSensorDelegate>
+
+@property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UILabel *yiYuanNameLabel;
 @property (nonatomic, weak) UILabel *guanLiYuanNameLabel;
 @property (nonatomic, weak) UILabel *shouquanNumLabel;
+
+@property (strong, nonatomic) SerialGATT *sensor;
+
+//临时的数据
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *peripheralArray;
 
 @end
 
 @implementation MainVC
 
+- (NSMutableArray *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    
+    return _dataArray;
+}
+
+- (NSMutableArray *)peripheralArray
+{
+    if (!_peripheralArray) {
+        _peripheralArray = [NSMutableArray array];
+    }
+    
+    return _peripheralArray;
+}
+
+//============================================================
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -29,11 +62,41 @@
     self.navigationItem.title = @"医疗机器人";
     
     [self drawView];
+    
+    self.sensor = [[SerialGATT alloc] init];
+    [self.sensor setup];
+    self.sensor.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if ([self.sensor activePeripheral])
+    {
+        if (self.sensor.activePeripheral.state == CBPeripheralStateConnected) {
+            [self.sensor.manager cancelPeripheralConnection:self.sensor.activePeripheral];
+            self.sensor.activePeripheral = nil;
+        }
+    }
+    
+    if ([self.sensor peripherals])
+    {
+        self.sensor.peripherals = nil;
+        [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
+    }
+    
+    self.sensor.delegate = self;
+    
+    [self.sensor findHMSoftPeripherals:5];
+    
+    [self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)drawView
@@ -43,7 +106,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
-    self.tableViwe = tableView;
+    self.tableView = tableView;
     
     UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"person"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPersonVC)];
     self.navigationItem.rightBarButtonItem = rightBarBtn;
@@ -55,6 +118,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+/**
+ *  蓝牙连接
+ */
+- (void)lanYaLianJieWitnSwitchIsOn:(BOOL)isOn indexPathRow:(NSInteger)row
+{
+    
+}
+
 #pragma mark -
 #pragma mark ================= <UITableViewDelegate,UITableViewDataSource> =================
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -64,12 +135,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    
+    return self.dataArray.count;
+    
+//    if ([ModelDeviceAndNurse sharedManager].deviceList.count)
+//    {
+//        return [ModelDeviceAndNurse sharedManager].deviceList.count;
+//    }else{
+//        return 0;
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MainVCCell *cell = [MainVCCell cellWithTableView:tableView];
+    
+//    cell.model = [ModelDeviceAndNurse sharedManager].deviceList[indexPath.row];
+    
+    cell.model = self.dataArray[indexPath.row];
     
     return cell;
 }
@@ -198,6 +281,13 @@
     .topSpaceToView(lieBiaoTitleView,0)
     .widthIs(190);
     
+    if ([ModelDeviceAndNurse sharedManager].nurse)
+    {
+        yiYuanNameLabel.text = [ModelDeviceAndNurse sharedManager].nurse.hospital.name;
+        guanLiYuanNameLabel.text = [ModelDeviceAndNurse sharedManager].nurse.name;
+        shouquanNumLabel.text = [ModelDeviceAndNurse sharedManager].nurse.hospital.currentCount;
+    }
+    
     return headerView;
 }
 
@@ -205,8 +295,53 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    LanInfoVC *vc = [[LanInfoVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    ModelDeviceListChild *model = self.dataArray[indexPath.row];
+    
+    LanInfoVC *controller = [[LanInfoVC alloc] init];
+    controller.peripheral = model.device.peripheral;
+    controller.sensor = self.sensor;
+    controller.model = model;
+    
+    if (self.sensor.activePeripheral && self.sensor.activePeripheral != controller.peripheral)
+    {
+        [self.sensor disconnect:self.sensor.activePeripheral];
+    }
+    
+    self.sensor.activePeripheral = model.device.peripheral;
+    [self.sensor connect:self.sensor.activePeripheral];
+    [self.sensor stopScan];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+}
+
+
+#pragma mark - HMSoftSensorDelegate
+-(void)sensorReady
+{
+    //TODO: it seems useless right now.
+}
+
+-(void)peripheralFound:(CBPeripheral *)peripheral
+{
+    NSLog(@"--->%@",peripheral.name);
+    [self.dataArray removeAllObjects];
+    for (ModelDeviceListChild *model in [ModelDeviceAndNurse sharedManager].deviceList)
+    {
+        if ([[NSString stringWithFormat:@"%@",model.device.btNumber] isEqualToString:peripheral.name])
+        {
+            model.device.peripheral = peripheral;
+            [self.dataArray addObject:model];
+        }
+    }
+    
+//    ModelDevice *model1 = [[ModelDevice alloc] init];
+//    model1 .name = peripheral.name;
+//    ModelDeviceListChild *mode2 = [[ModelDeviceListChild alloc] init];
+//    mode2.device = model1;
+//    [self.dataArray addObject:mode2];
+    
+    [self.tableView reloadData];
 }
 
 @end

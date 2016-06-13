@@ -32,8 +32,9 @@
     [hud setRemoveFromSuperViewOnHide:YES];
     [hud setLabelFont:[UIFont boldSystemFontOfSize:TEXT_SIZE]];
     [hud setMinSize:CGSizeMake(BGVIEW_WIDTH, BGVIEW_WIDTH)];
+    
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
-
+    
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"LCProgressHUD" ofType:@"bundle"];
 
     switch (status) {
@@ -123,8 +124,10 @@
 
 + (void)hide {
 
-    [[LCProgressHUD sharedHUD] setShowNow:NO];
-    [[LCProgressHUD sharedHUD] hide:YES];
+//    [[LCProgressHUD sharedHUD] setShowNow:NO];
+//    [[LCProgressHUD sharedHUD] hide:YES];
+    
+    [[LCProgressHUD sharedHUD] hide:YES afterDelay:0.01];
 }
 
 @end

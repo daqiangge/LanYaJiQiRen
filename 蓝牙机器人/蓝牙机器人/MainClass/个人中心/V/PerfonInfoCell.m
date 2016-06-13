@@ -51,6 +51,7 @@
     textField.placeholder = @"用户名";
     textField.text = @"张三";
     [self.contentView addSubview:textField];
+    self.textField = textField;
     
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = COLOR_LineViewColor;

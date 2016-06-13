@@ -47,6 +47,7 @@
     textField.textColor = [UIColor grayColor];
     textField.placeholder = @"授权次数";
     [self.contentView addSubview:textField];
+    self.textField = textField;
     
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = COLOR_LineViewColor;

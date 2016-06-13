@@ -10,10 +10,11 @@
 
 @interface BaseModel : NSObject
 
-@property (nonatomic, assign) NSInteger state;
+@property (nonatomic, assign) NSInteger success;
 
 @property (nonatomic, strong) id data;
 
-@property (nonatomic, strong) NSArray *fieldErrors;
+
+@property (nonatomic, copy) NSString *message;
 
 @end

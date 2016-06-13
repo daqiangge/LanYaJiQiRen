@@ -11,6 +11,14 @@
 
 @interface ForgetPasswordVC ()
 
+@property (nonatomic, weak) UITextField *telTextField;
+@property (nonatomic, weak) UITextField *yanZhenMaTextField;
+@property (nonatomic, weak) UITextField *passwordTextField;
+@property (nonatomic, weak) UITextField *ensurePasswordTextField;
+@property (nonatomic, weak) JXTimeButton * timeBtn;
+
+@property (nonatomic, copy) NSString *key;
+
 @end
 
 @implementation ForgetPasswordVC
@@ -39,6 +47,7 @@
     telTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     telTextField.layer.borderWidth = 0.5;
     [self.view addSubview:telTextField];
+    self.telTextField = telTextField;
     
     UITextField *yanZhenMaTextField = [[UITextField alloc] init];
     yanZhenMaTextField.placeholder = @"验证码";
@@ -49,6 +58,7 @@
     yanZhenMaTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     yanZhenMaTextField.layer.borderWidth = 0.5;
     [self.view addSubview:yanZhenMaTextField];
+    self.yanZhenMaTextField = yanZhenMaTextField;
     
     UITextField *passwordTextField = [[UITextField alloc] init];
     passwordTextField.placeholder = @"密码";
@@ -60,6 +70,7 @@
     passwordTextField.layer.borderWidth = 0.5;
     passwordTextField.secureTextEntry = YES;
     [self.view addSubview:passwordTextField];
+    self.passwordTextField = passwordTextField;
     
     UITextField *ensurePasswordTextField = [[UITextField alloc] init];
     ensurePasswordTextField.placeholder = @"确认密码";
@@ -71,12 +82,14 @@
     ensurePasswordTextField.layer.borderWidth = 0.5;
     ensurePasswordTextField.secureTextEntry = YES;
     [self.view addSubview:ensurePasswordTextField];
+    self.ensurePasswordTextField = ensurePasswordTextField;
     
     UIButton *loginBtn = [[UIButton alloc] init];
     [loginBtn setTitle:@"确认" forState:UIControlStateNormal];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     loginBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
+    [loginBtn addTarget:self action:@selector(ensure) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
     
     
@@ -128,6 +141,7 @@
     timeBtn.layer.masksToBounds = YES;
     timeBtn.layer.cornerRadius = 8;
     [yuanZhenMaRightView addSubview:timeBtn];
+    self.timeBtn = timeBtn;
     
     timeBtn.sd_layout
     .centerYEqualToView(yuanZhenMaRightView)
@@ -140,6 +154,38 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+
+- (void)ensure
+{
+
+}
+
+#pragma mark -
+#pragma mark ================= 网络 =================
+- (void)requestGetCode
+{
+    [self.view endEditing:YES];
+    
+    if (self.telTextField.text.length != 11 || ![self.telTextField.text LQ_isAllNum])
+    {
+        [self.timeBtn stop];
+        [LCProgressHUD showFailure:@"请填写正确的手机号!"];
+        return;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.telTextField.text forKey:@"mobile"];
+    
+    [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/getCode") parameters:params showTips:nil success:^(id responseObject) {
+        
+        self.key = [responseObject valueForKey:@"key"];
+        
+    } successBackfailError:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import "JXTimeButton.h"
 #import "ForgetPasswordVC.h"
+#import "ModelDeviceAndNurse.h"
 
 @interface LoginVC ()
 
@@ -17,6 +18,11 @@
 @property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UIView *miMaloginView;
 @property (nonatomic, weak) UIView *yanZhenloginView;
+@property (nonatomic, weak) UITextField *telTextField;
+@property (nonatomic, weak) UITextField *yanZhenMaTextField ;
+@property (nonatomic, weak) JXTimeButton * timeBtn;
+
+@property (nonatomic, copy) NSString *key;
 
 @end
 
@@ -110,12 +116,15 @@
     UITextField *telTextField = [[UITextField alloc] init];
     telTextField.placeholder = @"手机号码";
     telTextField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tel"]];
+    telTextField.keyboardType = UIKeyboardTypeNumberPad;
     telTextField.leftViewMode = UITextFieldViewModeAlways;
     telTextField.font = [UIFont systemFontOfSize:16];
     telTextField.backgroundColor = [UIColor whiteColor];
     telTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     telTextField.layer.borderWidth = 0.5;
+    telTextField.text = [UserDefaults valueForKey:@"username"];
     [yanZhenloginView addSubview:telTextField];
+    self.telTextField = telTextField;
     
     UITextField *yanZhenMaTextField = [[UITextField alloc] init];
     yanZhenMaTextField.placeholder = @"验证码";
@@ -126,6 +135,7 @@
     yanZhenMaTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     yanZhenMaTextField.layer.borderWidth = 0.5;
     [yanZhenloginView addSubview:yanZhenMaTextField];
+    self.yanZhenMaTextField = yanZhenMaTextField;
     
     UIButton *loginBtn2 = [[UIButton alloc] init];
     [loginBtn2 setTitle:@"登录" forState:UIControlStateNormal];
@@ -135,12 +145,12 @@
     [loginBtn2 addTarget:self action:@selector(didClickLoginBtn) forControlEvents:UIControlEventTouchUpInside];
     [yanZhenloginView addSubview:loginBtn2];
     
-    UIButton *forgetPasswodrBtn2 = [[UIButton alloc] init];
-    [forgetPasswodrBtn2 setTitle:@"忘记密码?" forState:UIControlStateNormal];
-    [forgetPasswodrBtn2 setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    forgetPasswodrBtn2.titleLabel.font = [UIFont systemFontOfSize:14];
-    [forgetPasswodrBtn2 addTarget:self action:@selector(didClickForgetPasswordBtn) forControlEvents:UIControlEventTouchUpInside];
-    [yanZhenloginView addSubview:forgetPasswodrBtn2];
+//    UIButton *forgetPasswodrBtn2 = [[UIButton alloc] init];
+//    [forgetPasswodrBtn2 setTitle:@"忘记密码?" forState:UIControlStateNormal];
+//    [forgetPasswodrBtn2 setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    forgetPasswodrBtn2.titleLabel.font = [UIFont systemFontOfSize:14];
+//    [forgetPasswodrBtn2 addTarget:self action:@selector(didClickForgetPasswordBtn) forControlEvents:UIControlEventTouchUpInside];
+//    [yanZhenloginView addSubview:forgetPasswodrBtn2];
     
 //    miMaLoginBtn.sd_layout
 //    .leftSpaceToView(self.view,0)
@@ -217,22 +227,26 @@
     .rightSpaceToView(yanZhenloginView,15)
     .heightIs(40);
     
-    forgetPasswodrBtn2.sd_layout
-    .topSpaceToView(loginBtn2,5)
-    .centerXEqualToView(loginBtn2)
-    .widthIs(100)
-    .heightIs(20);
+//    forgetPasswodrBtn2.sd_layout
+//    .topSpaceToView(loginBtn2,5)
+//    .centerXEqualToView(loginBtn2)
+//    .widthIs(100)
+//    .heightIs(20);
     
     UIView *yuanZhenMaRightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 40)];
     yuanZhenMaRightView.backgroundColor = [UIColor clearColor];
     yanZhenMaTextField.rightView = yuanZhenMaRightView;
     yanZhenMaTextField.rightViewMode = UITextFieldViewModeAlways;
     
-    JXTimeButton * timeBtn = [[JXTimeButton alloc] initWithFrame:CGRectMake(0, 0, 90, 20) AndBeforeTitle:@"获取验证码" AndWorkingMarkStr:@"剩余时间:" AndTimeSum:10 AndTimeButtonStar:^{
+    __weak typeof(self) weakSelf = self;
+    JXTimeButton * timeBtn = [[JXTimeButton alloc] initWithFrame:CGRectMake(0, 0, 90, 20) AndBeforeTitle:@"获取验证码" AndWorkingMarkStr:@"剩余时间:" AndTimeSum:60 AndTimeButtonStar:^{
         NSLog(@"STAR");
+        [weakSelf requestGetCode];
     } AndTimeButtonStop:^{
         NSLog(@"STOP");
     }];
+    self.timeBtn = timeBtn;
+    
     timeBtn.textColor = [UIColor whiteColor];
     timeBtn.center = self.view.center;
     timeBtn.font = [UIFont systemFontOfSize:14];
@@ -286,7 +300,78 @@
 
 - (void)didClickLoginBtn
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self requestLogin];
+}
+
+#pragma mark -
+#pragma mark ================= 网络 =================
+- (void)requestGetCode
+{
+    [self.view endEditing:YES];
+    
+    if (self.telTextField.text.length != 11 || ![self.telTextField.text LQ_isAllNum])
+    {
+        [self.timeBtn stop];
+        [LCProgressHUD showFailure:@"请填写正确的手机号!"];
+        return;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.telTextField.text forKey:@"mobile"];
+    
+    [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/getCode") parameters:params showTips:nil success:^(id responseObject) {
+        
+        self.key = [responseObject valueForKey:@"key"];
+        
+    } successBackfailError:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)requestLogin
+{
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.view endEditing:YES];
+    
+    if (self.telTextField.text.length != 11 || ![self.telTextField.text LQ_isAllNum])
+    {
+        [LCProgressHUD showFailure:@"请填写正确的手机号!"];
+        return;
+    }
+    
+    if (![self.yanZhenMaTextField.text LQ_isAllNum] || self.yanZhenMaTextField.text.length != 6)
+    {
+        [LCProgressHUD showFailure:@"请填写正确的验证码!"];
+        return;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.telTextField.text forKey:@"mobile"];
+    [params setValue:self.key forKey:@"key"];
+    [params setValue:self.yanZhenMaTextField.text forKey:@"code"];
+    
+    [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/login") parameters:params showTips:@"正在登录..." success:^(id responseObject) {
+        
+//        ModelMember *modelMember = [ModelMember sharedManager];
+//        modelMember = [ModelMember mj_objectWithKeyValues:responseObject];
+        
+        [UserDefaults setValue:self.telTextField.text forKey:@"username"];
+        [UserDefaults synchronize];
+        
+        ModelDeviceAndNurse *model = [ModelDeviceAndNurse sharedManager];
+        model = [ModelDeviceAndNurse mj_objectWithKeyValues:responseObject];
+        
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    } successBackfailError:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 @end

@@ -82,7 +82,18 @@
 {
     _iconImage = iconImage;
     
-    self.iconImageView.image = [UIImage imageNamed:@"PC_ic-userImg002"];
+    if (iconImage)
+    {
+//        self.iconImageView.image = iconImage;
+    }
+}
+
+- (void)setImageUrlStr:(NSString *)imageUrlStr
+{
+    _imageUrlStr =imageUrlStr;
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:URLSTR2(imageUrlStr)] placeholderImage:[UIImage imageNamed:@"PC_ic-userImg002"]];
+    
 }
 
 @end

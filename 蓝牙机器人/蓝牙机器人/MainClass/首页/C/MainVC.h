@@ -8,6 +8,9 @@
 
 #import "MainBaseViewController.h"
 
+#import "SerialGATT.h"
+
 @interface MainVC : MainBaseViewController
+
 
 @end

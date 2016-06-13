@@ -10,9 +10,4 @@
 
 @implementation BaseModel
 
-+ (NSDictionary *)objectClassInArray
-{
-    return @{@"fieldErrors":@"ModelFieldError"};
-}
-
 @end

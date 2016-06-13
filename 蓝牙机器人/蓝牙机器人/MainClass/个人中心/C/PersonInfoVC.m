@@ -53,8 +53,7 @@
 
 - (void)save
 {
-    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"保存成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alter show];
+    [self requestUpdateName];
 }
 
 - (void)changeIconImageView
@@ -115,12 +114,14 @@
     if (indexPath.section == 0)
     {
         ChangeIconCell *cell = [ChangeIconCell cellWithTableView:tableView];
+        cell.imageUrlStr = [ModelDeviceAndNurse sharedManager].nurse.photo;
         cell.iconImage = self.iconImage;
         return cell;
     }
     
     if (indexPath.row == 0) {
         PerfonInfoCell *cell = [PerfonInfoCell cellWithTableView:tableView];
+        cell.textField.text = [ModelDeviceAndNurse sharedManager].nurse.name;
         return cell;
     }else{
         PerfonInfoCell2 *cell = [PerfonInfoCell2 cellWithTableView:tableView];
@@ -181,7 +182,76 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     self.iconImage = croppedImage;
-    [self.tableView reloadData];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [weakSelf.tableView reloadData];
+    });
+}
+
+#pragma mark -
+#pragma mark ================= 网络 =================
+- (void)requestUpdatePhoto
+{
+    if (!self.iconImage)
+    {
+        return;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:[UserDefaults valueForKey:@"username"] forKey:@"mobile"];
+    
+    NSMutableArray *files = [NSMutableArray array];
+    NSDictionary *fileDic = @{
+                              @"kFileData" : UIImageJPEGRepresentation(self.iconImage, 0.1),
+                              @"kName" : @"file",
+                              @"kFileName" : @"file.jpg",
+                              @"kMimeType" : @"file"
+                              };
+    [files addObject:fileDic];
+    
+    
+    [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/updatePhoto") parameters:params fileInfo:files showTips:@"正在保存..." success:^(id responseObject) {
+        
+        [LCProgressHUD showSuccess:@"头像保存成功"];
+        [ModelDeviceAndNurse sharedManager].nurse.photo = [responseObject valueForKey:@"photo"];
+        NSLog(@"--->%@",[ModelDeviceAndNurse sharedManager].nurse.photo);
+        [self.tableView reloadData];
+    } successBackfailError:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)requestUpdateName
+{
+    PerfonInfoCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    
+    if (!cell.textField.text.length)
+    {
+        [LCProgressHUD showFailure:@"请填写用户名"];
+        return;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:[UserDefaults valueForKey:@"username"] forKey:@"mobile"];
+    [params setValue:cell.textField.text forKey:@"name"];
+    
+    [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/updateName") parameters:params showTips:@"正在保存..." success:^(id responseObject) {
+        
+        [ModelDeviceAndNurse sharedManager].nurse.name = cell.textField.text;
+        
+        [LCProgressHUD showSuccess:@"用户名保存成功"];
+        
+        [self requestUpdatePhoto];
+        
+    } successBackfailError:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 

@@ -11,6 +11,8 @@
 @interface LogInCell : UITableViewCell
 
 
+- (void)reloadCell;
+
 + (LogInCell *)cellWithTableView:(UITableView *)tableView;
 
 @end

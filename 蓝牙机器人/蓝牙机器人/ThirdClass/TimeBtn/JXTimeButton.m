@@ -77,4 +77,9 @@ static char stopKey;
     if (stopBlock) stopBlock();
 }
 
+- (void)stop
+{
+    _i =60;
+}
+
 @end

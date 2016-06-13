@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIImage *iconImage;
 
+@property (nonatomic, copy) NSString *imageUrlStr;
+
 + (ChangeIconCell *)cellWithTableView:(UITableView *)tableView;
 
 @end

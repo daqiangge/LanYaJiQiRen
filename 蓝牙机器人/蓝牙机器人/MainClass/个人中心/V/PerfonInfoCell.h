@@ -10,6 +10,8 @@
 
 @interface PerfonInfoCell : UITableViewCell
 
+@property (nonatomic, weak) UITextField *textField;
+
 + (PerfonInfoCell *)cellWithTableView:(UITableView *)tableView;
 
 @end

@@ -35,7 +35,8 @@
     static LQHTTPSessionManager *sessionManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sessionManager = [[LQHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:SERVER_URL]];
+//        sessionManager = [[LQHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:SERVER_URL]];
+        sessionManager = [[LQHTTPSessionManager alloc] init];
     });
     return sessionManager;
 }
@@ -141,33 +142,16 @@ successBackfailError:(void (^)(id responseObject))successBackfailError
 {
     BaseModel *baseModel = [BaseModel mj_objectWithKeyValues:responseObject];
     
-    //    if (![responseObject valueForKey:@"state"])
-    //    {
-    //        NSLog(@"********************************");
-    //        NSLog(@"******服务器返回数据错误********");
-    //        NSLog(@"********************************");
-    //
-    //        [MBProgressHUD showErrorHUDAddedToView:Window
-    //                                      errorStr:@"服务器返回数据错误"
-    //                                      animated:YES
-    //                                      showTime:TIPS_DELAY_TIME_NORMAL];
-    //        return;
-    //    }
-    
-    if(baseModel.state == 0)
+    if(baseModel.success == 1)
     {
         [LCProgressHUD hide];
         success(baseModel.data);
         return;
     }
     
-    if (baseModel.fieldErrors.count)
-    {
-        ModelFieldError *modelFieldError = [baseModel.fieldErrors firstObject];
-        [LCProgressHUD showFailure:modelFieldError.message];
-        
-        successBackfailError(modelFieldError);
-    }
+    [LCProgressHUD showFailure:baseModel.message];
+    
+    successBackfailError(baseModel.message);
 }
 
 @end

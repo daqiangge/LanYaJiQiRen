@@ -7,7 +7,26 @@
 //
 
 #import "ChildBaseViewController.h"
+#import "ModelDeviceListChild.h"
+#import "SerialGATT.h"
 
-@interface LanInfoVC : ChildBaseViewController
+#define WARNING_MESSAGE @"z"
+
+typedef enum : NSUInteger {
+    CMD1,
+    CMD2,
+    CMD3,
+} CMD;
+
+@class CBPeripheral;
+@class SerialGATT;
+
+@interface LanInfoVC : ChildBaseViewController<BTSmartSensorDelegate>
+
+@property (strong, nonatomic) CBPeripheral *peripheral;
+@property (strong, nonatomic) SerialGATT *sensor;
+
+
+@property (nonatomic, strong) ModelDeviceListChild *model;
 
 @end
