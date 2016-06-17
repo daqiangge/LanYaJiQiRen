@@ -57,7 +57,7 @@
     label1.sd_layout
     .leftSpaceToView(self.contentView,15)
     .topSpaceToView(self.contentView,0)
-    .widthIs(100)
+    .widthIs(120)
     .bottomSpaceToView(self.contentView,0);
     
     label2.sd_layout

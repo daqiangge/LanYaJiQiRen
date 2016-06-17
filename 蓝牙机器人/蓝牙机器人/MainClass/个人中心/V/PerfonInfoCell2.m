@@ -45,7 +45,7 @@
     UITextField *textField = [[UITextField alloc] init];
     textField.font = [UIFont systemFontOfSize:15];
     textField.placeholder = @"联系电话";
-    textField.text = @"13898923456";
+    textField.text = [UserDefaults valueForKey:@"username"];
     textField.enabled = NO;
     [self.contentView addSubview:textField];
     

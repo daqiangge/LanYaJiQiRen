@@ -160,7 +160,7 @@
 		D564989D1D046D7500D9C560 /* ModelDeviceAndNurse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDeviceAndNurse.m; sourceTree = "<group>"; };
 		D564989F1D046E8F00D9C560 /* ModelDeviceListChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDeviceListChild.h; sourceTree = "<group>"; };
 		D56498A01D046E8F00D9C560 /* ModelDeviceListChild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelDeviceListChild.m; sourceTree = "<group>"; };
-		D597AA1C1CEDF85E00965D8C /* 蓝牙机器人.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "蓝牙机器人.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D597AA1C1CEDF85E00965D8C /* 配液机器人.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "配液机器人.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D597AA201CEDF85E00965D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D597AA221CEDF85E00965D8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D597AA231CEDF85E00965D8C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -543,7 +543,7 @@
 		D597AA1D1CEDF85E00965D8C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D597AA1C1CEDF85E00965D8C /* 蓝牙机器人.app */,
+				D597AA1C1CEDF85E00965D8C /* 配液机器人.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -635,7 +635,7 @@
 			);
 			name = "蓝牙机器人";
 			productName = "蓝牙机器人";
-			productReference = D597AA1C1CEDF85E00965D8C /* 蓝牙机器人.app */;
+			productReference = D597AA1C1CEDF85E00965D8C /* 配液机器人.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -923,7 +923,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baichun.enterP.WaterMan;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "配液机器人";
 				PROVISIONING_PROFILE = "544e0b60-18c0-44f9-93fd-de53ca93966a";
 			};
 			name = Debug;
@@ -941,7 +941,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baichun.enterP.WaterMan;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "配液机器人";
 				PROVISIONING_PROFILE = "544e0b60-18c0-44f9-93fd-de53ca93966a";
 			};
 			name = Release;

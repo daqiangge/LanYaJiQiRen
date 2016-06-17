@@ -27,6 +27,9 @@
 @property (nonatomic, copy) NSString *surplusNum;
 @property (nonatomic, copy) NSString *alreadyUsedNum;
 
+@property (nonatomic, assign) int selectBtnTag;
+@property (nonatomic, assign) BOOL didClickBack;
+
 @end
 
 @implementation LanInfoVC
@@ -41,6 +44,8 @@
     
     self.surplusNum = @"";
     self.alreadyUsedNum = @"";
+    self.selectBtnTag = 0;
+    self.didClickBack = NO;
     
     self.receiveData = [NSMutableData data];
     
@@ -63,26 +68,180 @@
     .topSpaceToView(self.view,0)
     .bottomSpaceToView(self.view,0);
     
-    UIButton *logOutBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 345, ScreenWidth-30, 40)];
-    [logOutBtn setTitle:@"确定" forState:UIControlStateNormal];
+    UIButton *logOutBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 265, ScreenWidth-30, 40)];
+    [logOutBtn setTitle:@"授权" forState:UIControlStateNormal];
     [logOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     logOutBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
     logOutBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [logOutBtn addTarget:self action:@selector(ensure) forControlEvents:UIControlEventTouchUpInside];
+    logOutBtn.tag = 100;
     [tableView addSubview:logOutBtn];
+    
+    UIButton *huishouBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 315, ScreenWidth-30, 40)];
+    [huishouBtn setTitle:@"回收" forState:UIControlStateNormal];
+    [huishouBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    huishouBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
+    huishouBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [huishouBtn addTarget:self action:@selector(huishou) forControlEvents:UIControlEventTouchUpInside];
+    huishouBtn.tag = 101;
+    [tableView addSubview:huishouBtn];
+    
+    UIButton *chaXunBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 365, ScreenWidth-30, 40)];
+    [chaXunBtn setTitle:@"查询" forState:UIControlStateNormal];
+    [chaXunBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    chaXunBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
+    chaXunBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [chaXunBtn addTarget:self action:@selector(chaxun) forControlEvents:UIControlEventTouchUpInside];
+    chaXunBtn.tag = 102;
+    [tableView addSubview:chaXunBtn];
 }
 
-- (void)ensure
+- (void)huishou
 {
-//    [self requestUpdatePasswordByMobile];
+    self.alreadyUsedNum = @"";
+    self.surplusNum = @"";
+    self.selectBtnTag = 101;
+    
+//    [self requestUpdateDeviceInfoWithDeviceCurrentCount:@"1000" deviceUsedCount:@"2000"];
     
     LanInfoCell2 *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     UITextField *textField = cell.textField;
     
-    NSString *numStr = [textField.text stringByReplacingOccurrencesOfString:@"－" withString:@"-"];
+    NSString *numStr = textField.text;
     
-    NSLog(@"--->%d",[numStr intValue]);
-    NSLog(@"--->%d",[self.model.hospital.currentCount intValue]);
+    if (![numStr LQ_isPureInt])
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"请填写正确的回收次数！" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        return;
+    }
+    
+    if ([numStr intValue] < 0)
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"请填写正确的回收次数！" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        return;
+    }
+    
+    if ([numStr integerValue] > [self.model.device.currentCount integerValue])
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"您填写的回收次数已经大于剩余次数，请重新填写！" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        return;
+    }
+    
+    
+    NSData *headData = [self hexToBytes:@"AA11"];
+    NSData *cmdData = [self hexToBytes:@"02"];
+    NSData *numData = [NSData get4ByteWithId:(0 - [numStr intValue])];
+    NSData *nameData1 = [self setNameData1:self.model.device.number];
+    NSData *nameData2 = [self setNameData2:self.model.device.btNumber];
+    NSData *stateData = [self hexToBytes:@"00"];
+    NSData *CRCData =  [self setCRC8WithCmdData:cmdData numData:numData nameData1:nameData1 nameData2:nameData2 stateData:stateData];
+    NSData *tailData = [self hexToBytes:@"11AA"];
+    
+    NSLog(@"--->%@",headData);
+    NSLog(@"--->%@",cmdData);
+    NSLog(@"--->%@",numData);
+    NSLog(@"--->%@",nameData1);
+    NSLog(@"--->%@",nameData2);
+    NSLog(@"--->%@",stateData);
+    NSLog(@"--->%@",CRCData);
+    NSLog(@"--->%@",tailData);
+    
+    NSMutableData  *sendData = [NSMutableData data];
+    [sendData appendData:headData];
+    [sendData appendData:cmdData];
+    [sendData appendData:numData];
+    [sendData appendData:nameData1];
+    [sendData appendData:nameData2];
+    [sendData appendData:stateData];
+    [sendData appendData:CRCData];
+    [sendData appendData:tailData];
+    
+    [LCProgressHUD showLoading:@"正在回收..."];
+    
+    [self.sensor write:self.sensor.activePeripheral data:sendData];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!weakSelf.alreadyUsedNum.length || !weakSelf.surplusNum.length) {
+            [LCProgressHUD showFailure:@"回收失败!"];
+            weakSelf.alreadyUsedNum = @"";
+            weakSelf.surplusNum = @"";
+            weakSelf.selectBtnTag = 0;
+        }
+    });
+
+}
+
+- (void)chaxun
+{
+    self.alreadyUsedNum = @"";
+    self.surplusNum = @"";
+    self.selectBtnTag = 102;
+    
+    NSData *headData = [self hexToBytes:@"AA11"];
+    NSData *cmdData = [self hexToBytes:@"02"];
+    NSData *numData = [NSData get4ByteWithId:0];
+    NSData *nameData1 = [self setNameData1:self.model.device.number];
+    NSData *nameData2 = [self setNameData2:self.model.device.btNumber];
+    NSData *stateData = [self hexToBytes:@"00"];
+    NSData *CRCData =  [self setCRC8WithCmdData:cmdData numData:numData nameData1:nameData1 nameData2:nameData2 stateData:stateData];
+    NSData *tailData = [self hexToBytes:@"11AA"];
+    
+    NSLog(@"--->%@",headData);
+    NSLog(@"--->%@",cmdData);
+    NSLog(@"--->%@",numData);
+    NSLog(@"--->%@",nameData1);
+    NSLog(@"--->%@",nameData2);
+    NSLog(@"--->%@",stateData);
+    NSLog(@"--->%@",CRCData);
+    NSLog(@"--->%@",tailData);
+    
+    NSMutableData  *sendData = [NSMutableData data];
+    [sendData appendData:headData];
+    [sendData appendData:cmdData];
+    [sendData appendData:numData];
+    [sendData appendData:nameData1];
+    [sendData appendData:nameData2];
+    [sendData appendData:stateData];
+    [sendData appendData:CRCData];
+    [sendData appendData:tailData];
+    
+    
+    [LCProgressHUD showLoading:@"正在查询..."];
+    
+    [self.sensor write:self.sensor.activePeripheral data:sendData];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!weakSelf.alreadyUsedNum.length || !weakSelf.surplusNum.length) {
+            [LCProgressHUD showFailure:@"查询失败!"];
+            weakSelf.alreadyUsedNum = @"";
+            weakSelf.surplusNum = @"";
+            weakSelf.selectBtnTag = 0;
+        }
+    });
+}
+
+- (void)ensure
+{
+    self.alreadyUsedNum = @"";
+    self.surplusNum = @"";
+    self.selectBtnTag = 100;
+    
+    LanInfoCell2 *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    UITextField *textField = cell.textField;
+    
+    NSString *numStr = textField.text;
+    
+    if ([numStr intValue] < 0)
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"请填写正确的授权次数！" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        return;
+    }
     
     if ([numStr intValue] > [self.model.hospital.currentCount intValue])
     {
@@ -126,7 +285,19 @@
     [sendData appendData:CRCData];
     [sendData appendData:tailData];
     
+    [LCProgressHUD showLoading:@"正在授权..."];
+    
     [self.sensor write:self.sensor.activePeripheral data:sendData];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!weakSelf.alreadyUsedNum.length || !weakSelf.surplusNum.length) {
+            [LCProgressHUD showFailure:@"授权失败!"];
+            weakSelf.alreadyUsedNum = @"";
+            weakSelf.surplusNum = @"";
+            weakSelf.selectBtnTag = 0;
+        }
+    });
 }
 
 - (NSData *)setNameData1:(NSString *)name
@@ -199,6 +370,7 @@
 
 - (void)back
 {
+    self.didClickBack = YES;
     [LCProgressHUD showLoading:@"正在断开蓝牙连接..."];
     [self.sensor.manager cancelPeripheralConnection:self.peripheral];
     
@@ -218,7 +390,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,16 +407,28 @@
         case 1:
         {
             LanInfoCell1 *cell = [LanInfoCell1 cellWithTableView:tableView];
-            cell.label1.text = @"可用次数：";
-            cell.label2.text = self.model.device.currentCount;
+            cell.label1.text = @"连接状态：";
+            
+            switch (self.peripheral.state)
+            {
+                case CBPeripheralStateConnected:
+                    cell.label2.text  = @"已连接";
+                    break;
+                case CBPeripheralStateConnecting:
+                    cell.label2.text  = @"正在连接";
+                    break;
+                default:
+                    cell.label2.text  = @"已断开";
+                    break;
+            }
             return cell;
         }
             break;
         case 2:
         {
             LanInfoCell1 *cell = [LanInfoCell1 cellWithTableView:tableView];
-            cell.label1.text = @"连接状态：";
-            cell.label2.text = @"已连接";
+            cell.label1.text = @"剩余次数：";
+            cell.label2.text = self.model.device.currentCount;
             return cell;
         }
             break;
@@ -294,6 +478,11 @@
 #pragma mark ================= 网络 =================
 - (void)requestUpdateDeviceInfoWithDeviceCurrentCount:(NSString *)deviceCurrentCount deviceUsedCount:(NSString *)deviceUsedCount
 {
+    if (self.selectBtnTag == 0)
+    {
+        return;
+    }
+    
     LanInfoCell2 *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     UITextField *textField = cell.textField;
     
@@ -315,7 +504,15 @@
     if (!textField.text.length) {
         [params setValue:@"0" forKey:@"count"];
     }else{
-        [params setValue:textField.text forKey:@"count"];
+        
+        if (self.selectBtnTag == 101)
+        {
+            [params setValue:[NSNumber numberWithInt:(0 - [textField.text intValue])] forKey:@"count"];
+        }else if (self.selectBtnTag == 102){
+            [params setValue:@"0" forKey:@"count"];
+        }else{
+            [params setValue:textField.text forKey:@"count"];
+        }
     }
     
     [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/updateCount") parameters:params showTips:@"正在更新数据..." success:^(id responseObject) {
@@ -344,8 +541,7 @@
         
     }];
     
-    self.alreadyUsedNum = @"";
-    self.surplusNum = @"";
+    self.selectBtnTag = 0;
 }
 
 #pragma mark -
@@ -533,14 +729,26 @@
 
 -(void)setConnect
 {
-//    CFStringRef s = CFUUIDCreateString(kCFAllocatorDefault, (__bridge CFUUIDRef )sensor.activePeripheral.identifier);
-//    HMSoftUUID.text = (__bridge NSString*)s;
-//    tvRecv.text = @"OK+CONN";
+    [LCProgressHUD hide];
+    [self.tableView reloadData];
 }
 
 -(void)setDisconnect
 {
-//    tvRecv.text= [tvRecv.text stringByAppendingString:@"OK+LOST"];
+    if (self.didClickBack)
+    {
+        return ;
+    }
+    
+    [LCProgressHUD hide];
+    
+    [self.tableView reloadData];
+    
+    __weak typeof(self) weakSelf = self;
+    [UIAlertView showAlertViewWithTitle:@"设备已断开连接，请返回重试！" message:nil cancelButtonTitle:@"确定" otherButtonTitles:@[] onDismiss:^(int buttonIndex) {
+    } onCancel:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 #pragma mark -

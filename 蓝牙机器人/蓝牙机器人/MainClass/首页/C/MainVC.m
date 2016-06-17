@@ -325,11 +325,18 @@
 -(void)peripheralFound:(CBPeripheral *)peripheral
 {
     NSLog(@"--->%@",peripheral.name);
-    [self.dataArray removeAllObjects];
     for (ModelDeviceListChild *model in [ModelDeviceAndNurse sharedManager].deviceList)
     {
         if ([[NSString stringWithFormat:@"%@",model.device.btNumber] isEqualToString:peripheral.name])
         {
+            for (ModelDeviceListChild *model2 in self.dataArray)
+            {
+                if ([model2.device.number isEqualToString:model.device.number])
+                {
+                    return;
+                }
+            }
+            
             model.device.peripheral = peripheral;
             [self.dataArray addObject:model];
         }

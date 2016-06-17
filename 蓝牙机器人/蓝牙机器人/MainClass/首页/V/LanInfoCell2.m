@@ -36,16 +36,23 @@
 
 - (void)drawView
 {
+    
+//    UIButton *shouquanBtn = [[UIButton alloc] init];
+//    [shouquanBtn setImage:[UIImage imageNamed:@"icon_notselected"] forState:UIControlStateNormal];
+//    [shouquanBtn setImage:[UIImage imageNamed:@"icon_selected"] forState:UIControlStateSelected];
+//    [shouquanBtn setTitle:@"授权" forState:<#(UIControlState)#>]
+//    [self.contentView addSubview:shouquanBtn];
+    
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = [UIColor blackColor];
-    label.text = @"授权次数";
+    label.text = @"次数(授权/回收)";
     [self.contentView addSubview:label];
     
     UITextField *textField = [[UITextField alloc] init];
     textField.font = [UIFont systemFontOfSize:15];
     textField.textColor = [UIColor grayColor];
-    textField.placeholder = @"授权次数";
+    textField.placeholder = @"次数(授权/回收)";
     [self.contentView addSubview:textField];
     self.textField = textField;
     
@@ -57,7 +64,7 @@
     .leftSpaceToView(self.contentView,15)
     .centerYEqualToView(self.contentView)
     .heightIs(40)
-    .widthIs(100);
+    .widthIs(120);
     
     textField.sd_layout
     .leftSpaceToView(label,10)
