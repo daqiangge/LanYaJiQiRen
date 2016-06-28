@@ -14,8 +14,15 @@
 
 @property (nonatomic, strong) NSArray *deviceList;
 @property (nonatomic, strong) ModelNurse *nurse;
+@property (nonatomic, strong) NSArray *phoneList;
 
 
 + (instancetype)sharedManager;
+
+@end
+
+@interface ModelPhone : NSObject
+
+@property (nonatomic, strong) NSString *label;
 
 @end

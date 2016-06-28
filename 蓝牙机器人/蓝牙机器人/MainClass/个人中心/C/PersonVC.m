@@ -123,7 +123,8 @@
     
     if (indexPath.row == 3)
     {
-        cell.detailTextLabel.text = @"400-400-8888";
+        ModelPhone *model = [[ModelDeviceAndNurse sharedManager].phoneList firstObject];
+        cell.detailTextLabel.text = model.label;
     }
     
     return cell;
@@ -184,7 +185,9 @@
         FanKuiVC *vc = [[FanKuiVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row == 3){
-        NSString *num = [[NSString alloc]initWithFormat:@"telprompt://%@",@"400-400-8888"]; //而这个方法则打电话前先弹框 是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
+        
+        ModelPhone *model = [[ModelDeviceAndNurse sharedManager].phoneList firstObject];
+        NSString *num = [[NSString alloc]initWithFormat:@"telprompt://%@",model.label]; //而这个方法则打电话前先弹框 是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
     }
 }

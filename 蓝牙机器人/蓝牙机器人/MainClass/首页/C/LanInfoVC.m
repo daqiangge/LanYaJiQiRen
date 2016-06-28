@@ -30,6 +30,8 @@
 @property (nonatomic, assign) int selectBtnTag;
 @property (nonatomic, assign) BOOL didClickBack;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation LanInfoVC
@@ -50,6 +52,14 @@
     self.receiveData = [NSMutableData data];
     
     [self drawView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)drawView
@@ -77,16 +87,7 @@
     logOutBtn.tag = 100;
     [tableView addSubview:logOutBtn];
     
-    UIButton *huishouBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 315, ScreenWidth-30, 40)];
-    [huishouBtn setTitle:@"回收" forState:UIControlStateNormal];
-    [huishouBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    huishouBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
-    huishouBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [huishouBtn addTarget:self action:@selector(huishou) forControlEvents:UIControlEventTouchUpInside];
-    huishouBtn.tag = 101;
-    [tableView addSubview:huishouBtn];
-    
-    UIButton *chaXunBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 365, ScreenWidth-30, 40)];
+    UIButton *chaXunBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 325, ScreenWidth-30, 40)];
     [chaXunBtn setTitle:@"查询" forState:UIControlStateNormal];
     [chaXunBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     chaXunBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
@@ -94,6 +95,15 @@
     [chaXunBtn addTarget:self action:@selector(chaxun) forControlEvents:UIControlEventTouchUpInside];
     chaXunBtn.tag = 102;
     [tableView addSubview:chaXunBtn];
+    
+    UIButton *huishouBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 385, ScreenWidth-30, 40)];
+    [huishouBtn setTitle:@"回收" forState:UIControlStateNormal];
+    [huishouBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    huishouBtn.backgroundColor = [UIColor colorWithRed:0.325 green:0.824 blue:0.969 alpha:1.00];
+    huishouBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [huishouBtn addTarget:self action:@selector(huishou) forControlEvents:UIControlEventTouchUpInside];
+    huishouBtn.tag = 101;
+    [tableView addSubview:huishouBtn];
 }
 
 - (void)huishou
@@ -101,6 +111,8 @@
     self.alreadyUsedNum = @"";
     self.surplusNum = @"";
     self.selectBtnTag = 101;
+    [self.timer invalidate];
+    self.timer = nil;
     
 //    [self requestUpdateDeviceInfoWithDeviceCurrentCount:@"1000" deviceUsedCount:@"2000"];
     
@@ -163,16 +175,7 @@
     
     [self.sensor write:self.sensor.activePeripheral data:sendData];
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!weakSelf.alreadyUsedNum.length || !weakSelf.surplusNum.length) {
-            [LCProgressHUD showFailure:@"回收失败!"];
-            weakSelf.alreadyUsedNum = @"";
-            weakSelf.surplusNum = @"";
-            weakSelf.selectBtnTag = 0;
-        }
-    });
-
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(scrollTimer) userInfo:nil repeats:NO];
 }
 
 - (void)chaxun
@@ -180,6 +183,8 @@
     self.alreadyUsedNum = @"";
     self.surplusNum = @"";
     self.selectBtnTag = 102;
+    [self.timer invalidate];
+    self.timer = nil;
     
     NSData *headData = [self hexToBytes:@"AA11"];
     NSData *cmdData = [self hexToBytes:@"02"];
@@ -214,15 +219,7 @@
     
     [self.sensor write:self.sensor.activePeripheral data:sendData];
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!weakSelf.alreadyUsedNum.length || !weakSelf.surplusNum.length) {
-            [LCProgressHUD showFailure:@"查询失败!"];
-            weakSelf.alreadyUsedNum = @"";
-            weakSelf.surplusNum = @"";
-            weakSelf.selectBtnTag = 0;
-        }
-    });
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(scrollTimer) userInfo:nil repeats:NO];
 }
 
 - (void)ensure
@@ -230,6 +227,8 @@
     self.alreadyUsedNum = @"";
     self.surplusNum = @"";
     self.selectBtnTag = 100;
+    [self.timer invalidate];
+    self.timer = nil;
     
     LanInfoCell2 *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     UITextField *textField = cell.textField;
@@ -289,15 +288,7 @@
     
     [self.sensor write:self.sensor.activePeripheral data:sendData];
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!weakSelf.alreadyUsedNum.length || !weakSelf.surplusNum.length) {
-            [LCProgressHUD showFailure:@"授权失败!"];
-            weakSelf.alreadyUsedNum = @"";
-            weakSelf.surplusNum = @"";
-            weakSelf.selectBtnTag = 0;
-        }
-    });
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(scrollTimer) userInfo:nil repeats:NO];
 }
 
 - (NSData *)setNameData1:(NSString *)name
@@ -378,7 +369,17 @@
         [LCProgressHUD hide];
         [super back];
     });
-    
+}
+
+- (void)scrollTimer
+{
+    if (!self.alreadyUsedNum.length || !self.surplusNum.length)
+    {
+        [LCProgressHUD showFailure:@"操作失败！请重试。"];
+        self.alreadyUsedNum = @"";
+        self.surplusNum = @"";
+        self.selectBtnTag = 0;
+    }
 }
 
 #pragma mark -
@@ -478,6 +479,9 @@
 #pragma mark ================= 网络 =================
 - (void)requestUpdateDeviceInfoWithDeviceCurrentCount:(NSString *)deviceCurrentCount deviceUsedCount:(NSString *)deviceUsedCount
 {
+    [self.timer invalidate];
+    self.timer = nil;
+    
     if (self.selectBtnTag == 0)
     {
         return;
@@ -501,25 +505,17 @@
     [params setValue:deviceUsedCount forKey:@"deviceUsedCount"];
     [params setValue:[UserDefaults valueForKey:@"username"] forKey:@"mobile"];
     
-    if (!textField.text.length) {
+    if (self.selectBtnTag == 101)
+    {
+        [params setValue:[NSNumber numberWithInt:(0 - [textField.text intValue])] forKey:@"count"];
+    }else if (self.selectBtnTag == 102){
         [params setValue:@"0" forKey:@"count"];
     }else{
-        
-        if (self.selectBtnTag == 101)
-        {
-            [params setValue:[NSNumber numberWithInt:(0 - [textField.text intValue])] forKey:@"count"];
-        }else if (self.selectBtnTag == 102){
-            [params setValue:@"0" forKey:@"count"];
-        }else{
-            [params setValue:textField.text forKey:@"count"];
-        }
+        [params setValue:textField.text forKey:@"count"];
     }
     
+    
     [[LQHTTPSessionManager sharedManager] LQPost:URLSTR(@"/app/sys/user/updateCount") parameters:params showTips:@"正在更新数据..." success:^(id responseObject) {
-        
-//        UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"更新成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//        [alter show];
-        
         
         ModelDeviceAndNurse *model = [ModelDeviceAndNurse sharedManager];
         model = [ModelDeviceAndNurse mj_objectWithKeyValues:responseObject];
@@ -534,14 +530,32 @@
             }
         }
         
+//        if (self.selectBtnTag == 101)
+//        {
+//            [UIAlertView showAlertViewWithTitle:nil message:[NSString stringWithFormat:@"你点击了回收按钮，剩余次数%@次，设备总共使用了%@次",deviceCurrentCount,deviceUsedCount] cancelButtonTitle:@"确定" otherButtonTitles:@[] onDismiss:^(int buttonIndex) {
+//                
+//            } onCancel:^{
+//                
+//            }];
+//        }else if (self.selectBtnTag == 102){
+//            [UIAlertView showAlertViewWithTitle:nil message:[NSString stringWithFormat:@"你点击了查询按钮，剩余次数%@次，设备总共使用了%@次",deviceCurrentCount,deviceUsedCount] cancelButtonTitle:@"确定" otherButtonTitles:@[] onDismiss:^(int buttonIndex) {
+//                
+//            } onCancel:^{
+//                
+//            }];
+//        }else{
+//            [UIAlertView showAlertViewWithTitle:nil message:[NSString stringWithFormat:@"你点击了授权按钮，剩余次数%@次，设备总共使用了%@次",deviceCurrentCount,deviceUsedCount] cancelButtonTitle:@"确定" otherButtonTitles:@[] onDismiss:^(int buttonIndex) {
+//                
+//            } onCancel:^{
+//                
+//            }];
+//        }
         
     } successBackfailError:^(id responseObject) {
         
     } failure:^(NSError *error) {
         
     }];
-    
-    self.selectBtnTag = 0;
 }
 
 #pragma mark -

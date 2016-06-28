@@ -38,7 +38,11 @@ static ModelDeviceAndNurse *shareSingleTon = nil;
 
 + (NSDictionary *)objectClassInArray
 {
-    return @{@"deviceList":@"ModelDeviceListChild"};
+    return @{@"deviceList":@"ModelDeviceListChild",@"phoneList":@"ModelPhone"};
 }
+
+@end
+
+@implementation ModelPhone
 
 @end
