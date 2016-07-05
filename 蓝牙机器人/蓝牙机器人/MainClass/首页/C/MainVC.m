@@ -59,7 +59,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"医疗机器人";
+    self.navigationItem.title = @"配液机器人";
     
     [self drawView];
     

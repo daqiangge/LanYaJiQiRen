@@ -23,6 +23,6 @@
 
 @interface ModelPhone : NSObject
 
-@property (nonatomic, strong) NSString *label;
+@property (nonatomic, strong) NSString *phone;
 
 @end
